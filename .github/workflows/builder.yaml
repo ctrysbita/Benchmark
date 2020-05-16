@@ -22,20 +22,33 @@ jobs:
         run: |
           export CGO_ENABLED=0
 
+          export GOOS=linux GOARCH=amd64
           go test -c
-          mv benchmark.test benchmark_x86_64
+          mv benchmark.test benchmark_linux_x86_64
 
-          export GOARCH=arm
+          export GOOS=linux GOARCH=arm
           go test -c
-          mv benchmark.test benchmark_arm
+          mv benchmark.test benchmark_linux_arm
 
-          export GOARCH=arm64
+          export GOOS=linux GOARCH=arm64
           go test -c
-          mv benchmark.test benchmark_arm64
+          mv benchmark.test benchmark_linux_arm64
 
-          export GOARCH=mips GOMIPS=softfloat
+          export GOOS=linux GOARCH=mips
           go test -c
-          mv benchmark.test benchmark_mips_softfloat
+          mv benchmark.test benchmark_linux_mips
+
+          export GOOS=linux GOARCH=mips GOMIPS=softfloat
+          go test -c
+          mv benchmark.test benchmark_linux_mips_softfloat
+
+          export GOOS=windows GOARCH=amd64
+          go test -c
+          mv benchmark.test.exe benchmark_windows_x86_64.exe
+
+          export GOOS=darwin GOARCH=amd64
+          go test -c
+          mv benchmark.test benchmark_darwin_x86_64
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
