@@ -22,6 +22,13 @@ func BenchmarkFormatInt(b *testing.B) {
 	}
 }
 
+func BenchmarkFormatBool(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = strconv.FormatBool(i%2 == 0)
+	}
+}
+
 func BenchmarkItoa(b *testing.B) {
 	num := 10
 	b.ResetTimer()
