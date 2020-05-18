@@ -7,7 +7,7 @@ import (
 )
 
 func BenchmarkSprintf(b *testing.B) {
-	num := 10
+	num := b.N
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		_ = fmt.Sprintf("%d", num)
@@ -15,7 +15,7 @@ func BenchmarkSprintf(b *testing.B) {
 }
 
 func BenchmarkFormatInt(b *testing.B) {
-	num := int64(10)
+	num := int64(b.N)
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		strconv.FormatInt(num, 10)
@@ -30,7 +30,7 @@ func BenchmarkFormatBool(b *testing.B) {
 }
 
 func BenchmarkItoa(b *testing.B) {
-	num := 10
+	num := b.N
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		strconv.Itoa(num)
