@@ -26,9 +26,13 @@ jobs:
           go test -c
           mv benchmark.test benchmark_linux_x86_64
 
-          export GOOS=linux GOARCH=arm
+          export GOOS=linux GOARCH=arm GOARM=6
           go test -c
-          mv benchmark.test benchmark_linux_arm
+          mv benchmark.test benchmark_linux_armv6
+
+          export GOOS=linux GOARCH=arm GOARM=7
+          go test -c
+          mv benchmark.test benchmark_linux_armv7
 
           export GOOS=linux GOARCH=arm64
           go test -c
@@ -38,9 +42,17 @@ jobs:
           go test -c
           mv benchmark.test benchmark_linux_mips
 
+          export GOOS=linux GOARCH=mipsle
+          go test -c
+          mv benchmark.test benchmark_linux_mipsle
+
           export GOOS=linux GOARCH=mips GOMIPS=softfloat
           go test -c
           mv benchmark.test benchmark_linux_mips_softfloat
+
+          export GOOS=linux GOARCH=mipsle GOMIPS=softfloat
+          go test -c
+          mv benchmark.test benchmark_linux_mipsle_softfloat
 
           export GOOS=windows GOARCH=amd64
           go test -c
