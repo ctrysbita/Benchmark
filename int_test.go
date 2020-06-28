@@ -8,8 +8,8 @@ import (
 func BenchmarkIntAdd32(b *testing.B) {
 	num := rand.Int31n(10)
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		num += 1
+	for i := int32(0); i < int32(b.N); i++ {
+		num += i
 	}
 	b.StopTimer()
 	keep(num)
@@ -18,8 +18,8 @@ func BenchmarkIntAdd32(b *testing.B) {
 func BenchmarkIntMul32(b *testing.B) {
 	num := rand.Int31n(10)
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		num *= int32(i)
+	for i := int32(0); i < int32(b.N); i++ {
+		num *= i
 	}
 	b.StopTimer()
 	keep(num)
@@ -28,8 +28,8 @@ func BenchmarkIntMul32(b *testing.B) {
 func BenchmarkIntAdd64(b *testing.B) {
 	num := rand.Int63n(10)
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		num += 1
+	for i := int64(0); i < int64(b.N); i++ {
+		num += i
 	}
 	b.StopTimer()
 	keep(num)
@@ -38,8 +38,8 @@ func BenchmarkIntAdd64(b *testing.B) {
 func BenchmarkIntMul64(b *testing.B) {
 	num := rand.Int63n(10)
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		num *= int64(i)
+	for i := int64(0); i < int64(b.N); i++ {
+		num *= i
 	}
 	b.StopTimer()
 	keep(num)

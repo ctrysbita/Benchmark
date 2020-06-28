@@ -6,11 +6,10 @@ import (
 	"github.com/mjibson/go-dsp/fft"
 )
 
-// run with: go test -test.bench="."
+// Benckmark for Fast Fourier Transform with 2^10 1D input.
 func BenchmarkFFT(b *testing.B) {
-	b.StopTimer()
 
-	N := 1 << 20
+	N := 1 << 10
 	a := make([]complex128, N)
 	for i := 0; i < N; i++ {
 		a[i] = complex(float64(i)/float64(N), 0)
@@ -18,7 +17,7 @@ func BenchmarkFFT(b *testing.B) {
 
 	fft.EnsureRadix2Factors(N)
 
-	b.StartTimer()
+	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		fft.FFT(a)
